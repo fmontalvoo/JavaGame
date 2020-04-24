@@ -6,7 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Juego extends Canvas {
+public class Juego extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +19,9 @@ public class Juego extends Canvas {
 
 //	Objeto que define la ventana del juego.
 	private static JFrame ventana;
+
+//	Therad encargado del procesamiento de los graficos del juego.
+	private static Thread thread;
 
 	public Juego() {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
@@ -33,8 +36,23 @@ public class Juego extends Canvas {
 		ventana.setVisible(true);
 	}
 
-	public static void main(String... args) {
-		Juego juego = new Juego();
+	private void iniciar() {
+//		Inicia el thread. Recibe como parametros la clase a ejecutar y el nombre del thread
+		thread = new Thread(this, "Graficos");
+		thread.start();
 	}
 
+	private void detener() {
+
+	}
+
+	@Override
+	public void run() {
+
+	}
+
+	public static void main(String... args) {
+		Juego juego = new Juego();
+		juego.iniciar();
+	}
 }
