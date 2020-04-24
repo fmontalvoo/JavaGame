@@ -17,6 +17,9 @@ public class Juego extends Canvas implements Runnable {
 //	Titulo para la ventana del juego.
 	private static final String TITULO = "Juego";
 
+//	Indica el estado del juego (iniciado, detenido).
+	private static volatile boolean ejecutando = false;
+
 //	Objeto que define la ventana del juego.
 	private static JFrame ventana;
 
@@ -36,19 +39,34 @@ public class Juego extends Canvas implements Runnable {
 		ventana.setVisible(true);
 	}
 
-	private void iniciar() {
+	/**
+	 * Metodo que inicia la ejecucion del thread. Trabaja sincronamente con la
+	 * variable `ejecutando`.
+	 */
+	private synchronized void iniciar() {
+		ejecutando = true;
 //		Inicia el thread. Recibe como parametros la clase a ejecutar y el nombre del thread
 		thread = new Thread(this, "Graficos");
 		thread.start();
 	}
 
-	private void detener() {
-
+	/**
+	 * Metodo que detiene la ejecucion del thread. Trabaja sincronamente con la
+	 * variable `ejecutando`.
+	 */
+	private synchronized void detener() {
+		ejecutando = false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void run() {
-
+		while (ejecutando) {
+		}
 	}
 
 	public static void main(String... args) {
