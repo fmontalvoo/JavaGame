@@ -21,7 +21,8 @@ public final class Pantalla {
 	}
 
 	/**
-	 * 
+	 * Borra el contenido anterior del array y lo deja listo para dibujar una nueva
+	 * imagen.
 	 */
 	public void limpiar() {
 		for (int i = 0; i < pixels.length; i++) {
@@ -30,6 +31,8 @@ public final class Pantalla {
 	}
 
 	/**
+	 * Dibuja en la pantalla los objetos que deseamos mostrar en la ventana del
+	 * juego.
 	 * 
 	 * @param compesacionX
 	 * @param compensacionY
@@ -43,6 +46,8 @@ public final class Pantalla {
 				int posicionX = x + compesacionX;
 				if (posicionX < 0 || posicionX >= this.ancho)
 					continue;
+
+				pixels[posicionX + posicionY * this.ancho] = Sprite.asfalto.pixels[(x & 31) + (y & 31) * 32];
 			}
 		}
 	}

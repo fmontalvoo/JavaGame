@@ -15,20 +15,25 @@ public final class Sprite {
 
 	private int x;
 	private int y;
-
 	public int[] pixels;
+
+//	Coleccion de sprites
+	public static Sprite asfalto = new Sprite(32, 0, 0, HojaSprites.desierto);
+//	Fin coleccion
 
 	public Sprite(final int tamanioLado, final int fila, final int columna, final HojaSprites hojaSprites) {
 		this.tamanioLado = tamanioLado;
 		this.hojaSprites = hojaSprites;
+
+		pixels = new int[this.tamanioLado * this.tamanioLado];
 
 		this.x = fila * this.tamanioLado;
 		this.y = columna * this.tamanioLado;
 
 		for (int y = 0; y < this.tamanioLado; y++) {
 			for (int x = 0; x < this.tamanioLado; x++) {
-				this.pixels[(x + y) * this.tamanioLado] = this.hojaSprites.pixels[((x + this.x) + (y + this.y))
-						* hojaSprites.getAncho()];
+				this.pixels[x + y * this.tamanioLado] = this.hojaSprites.pixels[(x + this.x)
+						+ (y + this.y) * hojaSprites.getAncho()];
 			}
 		}
 	}

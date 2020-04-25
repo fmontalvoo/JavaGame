@@ -3,10 +3,15 @@ package com.fmont.juego;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
 import com.fmont.control.Teclado;
+import com.fmont.graficos.Pantalla;
 
 /**
  * Clase que sirve como punto de ejecucion del juego.
@@ -17,11 +22,14 @@ import com.fmont.control.Teclado;
 public class Juego extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-//*************************VARIABLES LOCALES DE LA CLASE*************************//
 
+//************************* VARIABLES LOCALES DE LA CLASE *************************//
 //	Dimensiones para la ventana del juego.
 	private static final int ANCHO = 800;
 	private static final int ALTO = 600;
+
+	private static int x = 0;
+	private static int y = 0;
 
 //	Actualizaciones por segundo.
 	private static int aps = 0;
@@ -33,9 +41,9 @@ public class Juego extends Canvas implements Runnable {
 
 //	Indica el estado del juego (iniciado, detenido).
 	private static volatile boolean ejecutando = false;
+//************************* FIN VARIABLES LOCALES DE LA CLASE *************************//
 
-//*************************INSTANCIAS DE OTRAS CLASES*************************//
-
+//************************* INSTANCIAS DE OTRAS CLASES *************************//
 //	Objeto que define la ventana del juego.
 	private static JFrame ventana;
 
@@ -45,8 +53,20 @@ public class Juego extends Canvas implements Runnable {
 //	Objeto encargado de controlar el movimiento dentro del juego.	
 	private static Teclado teclado;
 
+//	Objeto encargado de dibujar objetos en la ventana del juego.
+	private static Pantalla pantalla;
+
+//	Crea una imagen vacia.
+	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
+// ************************* FIN INSTANCIAS DE OTRAS CLASES *************************//
+
+//	Convierte la imagen en un array de pixeles.
+	private static int[] pixels = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
+
 	public Juego() {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
+
+		pantalla = new Pantalla(ANCHO, ALTO);
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -63,7 +83,7 @@ public class Juego extends Canvas implements Runnable {
 
 	/**
 	 * Metodo que inicia la ejecucion del thread. Trabaja sincronamente con la
-	 * variable `ejecutando`.
+	 * variable 'ejecutando'.
 	 */
 	private synchronized void iniciar() {
 		ejecutando = true;
@@ -74,7 +94,7 @@ public class Juego extends Canvas implements Runnable {
 
 	/**
 	 * Metodo que detiene la ejecucion del thread. Trabaja sincronamente con la
-	 * variable `ejecutando`.
+	 * variable 'ejecutando'.
 	 */
 	private synchronized void detener() {
 		ejecutando = false;
@@ -92,12 +112,16 @@ public class Juego extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
+			y++;
 		}
 		if (teclado.abajo) {
+			y--;
 		}
 		if (teclado.derecha) {
+			x--;
 		}
 		if (teclado.izquierda) {
+			x++;
 		}
 
 		aps++;
@@ -107,6 +131,29 @@ public class Juego extends Canvas implements Runnable {
 	 * Dibuja y muestra los graficos del juego en la ventana.
 	 */
 	private void mostrar() {
+//		Buffer para calcular y almacenar la imagen que se mostrara.
+		BufferStrategy estrategia = getBufferStrategy();
+
+		if (estrategia == null) {
+//			Cantidad de Buffers que se emplearan para almacenar y mostrar las imagenes.
+			createBufferStrategy(3);
+			return;
+		}
+
+		pantalla.limpiar();
+		pantalla.monstrar(x, y);
+
+//		Copia el array de pixeles de la clase Pantalla al array de pixeles de esta clase.
+		System.arraycopy(pantalla.pixels, 0, pixels, 0, pixels.length);
+
+		Graphics graphics = estrategia.getDrawGraphics();
+
+		graphics.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+//		Elimina el objeto 'graphics' de la memoria.
+		graphics.dispose();
+
+		estrategia.show();
+
 		fps++;
 	}
 
