@@ -1,4 +1,4 @@
-package com.fmont.game;
+package com.fmont.juego;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -123,6 +123,7 @@ public class Juego extends Canvas implements Runnable {
 			}
 
 			mostrar();
+
 		}
 	}
 
