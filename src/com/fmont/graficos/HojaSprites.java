@@ -10,7 +10,7 @@ public class HojaSprites {
 	private final String url;
 	private final int ancho;
 	private final int alto;
-	private final int[] pixels;
+	public final int[] pixels;
 
 	public HojaSprites(final String url, final int ancho, final int alto) {
 
@@ -27,6 +27,14 @@ public class HojaSprites {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	public int getAlto() {
+		return alto;
 	}
 
 }
