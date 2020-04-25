@@ -1,5 +1,12 @@
 package com.fmont.graficos;
 
+/**
+ * Esta clase se encarga de extraer cada sprite de forma individual desde la
+ * Hoja de Sprites.
+ * 
+ * @author fmont
+ *
+ */
 public final class Sprite {
 
 //	Variable que almacena el tamaño del lado en pixels de un sprite.

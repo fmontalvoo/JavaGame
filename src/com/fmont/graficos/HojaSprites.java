@@ -5,6 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Clase que se encarga de leer los archivos de imagen que contienen los sprites
+ * en forma de matriz.
+ * 
+ * @author fmont
+ *
+ */
 public class HojaSprites {
 
 	private final String url;

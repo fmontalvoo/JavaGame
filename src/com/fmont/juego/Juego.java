@@ -6,10 +6,18 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.fmont.control.Teclado;
+
+/**
+ * Clase que sirve como punto de ejecucion del juego.
+ * 
+ * @author fmont
+ *
+ */
 public class Juego extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-
+//*************************VARIABLES LOCALES DE LA CLASE*************************//
 //	Dimensiones para la ventana del juego.
 	private static final int ANCHO = 800;
 	private static final int ALTO = 600;
@@ -25,14 +33,22 @@ public class Juego extends Canvas implements Runnable {
 //	Indica el estado del juego (iniciado, detenido).
 	private static volatile boolean ejecutando = false;
 
+//*************************INSTANCIAS DE OTRAS CLASES*************************//
+
 //	Objeto que define la ventana del juego.
 	private static JFrame ventana;
 
 //	Therad encargado del procesamiento de los graficos del juego.
 	private static Thread thread;
 
+//	Objeto encargado de controlar el movimiento dentro del juego.	
+	private static Teclado teclado;
+
 	public Juego() {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
+
+		teclado = new Teclado();
+		addKeyListener(teclado);
 
 		ventana = new JFrame(TITULO);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,11 +88,22 @@ public class Juego extends Canvas implements Runnable {
 	 * Actualiza todas las variables del juego.
 	 */
 	private void actualizar() {
+		teclado.actualizar();
+
+		if (teclado.arriba) {
+		}
+		if (teclado.abajo) {
+		}
+		if (teclado.derecha) {
+		}
+		if (teclado.izquierda) {
+		}
+
 		aps++;
 	}
 
 	/**
-	 * Dibuja y muestra los graficos en la ventana.
+	 * Dibuja y muestra los graficos del juego en la ventana.
 	 */
 	private void mostrar() {
 		fps++;
@@ -97,6 +124,9 @@ public class Juego extends Canvas implements Runnable {
 		double tiempoTrasncurrido;
 //		Almacena la cantidad de tiempo que transcurre hasta realizar una actualizacion.
 		double delta = 0;
+
+//		Otorga el foco para el uso del teclado a esta ventana.
+		requestFocus();
 
 		while (ejecutando) {
 //			Recupera el tiempo en nanosegundos en el momento en el que inicia el bucle.
