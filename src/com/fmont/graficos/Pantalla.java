@@ -47,7 +47,7 @@ public final class Pantalla {
 				if (posicionX < 0 || posicionX >= this.ancho)
 					continue;
 
-				pixels[posicionX + posicionY * this.ancho] = Sprite.asfalto.pixels[(x & 31) + (y & 31) * 32];
+				pixels[posicionX + posicionY * this.ancho] = Sprite.ASFALTO.pixels[(x & 31) + (y & 31) * 32];
 			}
 		}
 	}

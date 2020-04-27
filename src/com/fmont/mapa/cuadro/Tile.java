@@ -12,6 +12,10 @@ public abstract class Tile {
 
 	private Sprite sprite;
 
+//	Coleccion de tiles
+	public static final Tile ASFALTO = new TileAsfalto(Sprite.ASFALTO);
+//	Fin coleccion
+
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 	}

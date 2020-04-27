@@ -18,7 +18,7 @@ public final class Sprite {
 	public int[] pixels;
 
 //	Coleccion de sprites
-	public static Sprite asfalto = new Sprite(32, 0, 0, HojaSprites.desierto);
+	public static final Sprite ASFALTO = new Sprite(32, 0, 0, HojaSprites.desierto);
 //	Fin coleccion
 
 	public Sprite(final int tamanioLado, final int fila, final int columna, final HojaSprites hojaSprites) {
