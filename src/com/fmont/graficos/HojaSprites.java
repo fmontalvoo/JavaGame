@@ -34,6 +34,7 @@ public class HojaSprites {
 		BufferedImage imagen;
 		try {
 			imagen = ImageIO.read(HojaSprites.class.getResource(this.url));
+//			Escribe la imagen sobre el array de pixeles.
 			imagen.getRGB(0, 0, this.ancho, this.alto, pixels, 0, this.ancho);
 		} catch (IOException e) {
 			e.printStackTrace();

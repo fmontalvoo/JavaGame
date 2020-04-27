@@ -34,6 +34,7 @@ public final class Sprite {
 			for (int x = 0; x < this.tamanioLado; x++) {
 				this.pixels[x + y * this.tamanioLado] = this.hojaSprites.pixels[(x + this.x)
 						+ (y + this.y) * hojaSprites.getAncho()];
+//				System.out.println(x + "+" + y + "*" + this.tamanioLado + "=" + (x + y * this.tamanioLado));
 			}
 		}
 	}

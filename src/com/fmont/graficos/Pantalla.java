@@ -34,16 +34,16 @@ public final class Pantalla {
 	 * Dibuja en la pantalla los objetos que deseamos mostrar en la ventana del
 	 * juego.
 	 * 
-	 * @param compesacionX
-	 * @param compensacionY
+	 * @param dX
+	 * @param dY
 	 */
-	public void monstrar(final int compesacionX, final int compensacionY) {
+	public void monstrar(final int dX, final int dY) {
 		for (int y = 0; y < this.alto; y++) {
-			int posicionY = y + compensacionY;
+			int posicionY = y + dY;
 			if (posicionY < 0 || posicionY >= this.alto)
 				continue;
 			for (int x = 0; x < this.ancho; x++) {
-				int posicionX = x + compesacionX;
+				int posicionX = x + dX;
 				if (posicionX < 0 || posicionX >= this.ancho)
 					continue;
 

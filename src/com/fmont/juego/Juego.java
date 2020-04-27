@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.fmont.control.Teclado;
@@ -58,6 +59,9 @@ public class Juego extends Canvas implements Runnable {
 
 //	Crea una imagen vacia.
 	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
+
+//	Variable que almacena la imagen que servira de icono para la ventana del juego.
+	private static final ImageIcon icon = new ImageIcon(Juego.class.getResource("/icono/icon.png"));
 // ************************* FIN INSTANCIAS DE OTRAS CLASES *************************//
 
 //	Convierte la imagen en un array de pixeles.
@@ -73,6 +77,7 @@ public class Juego extends Canvas implements Runnable {
 
 		ventana = new JFrame(TITULO);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setIconImage(icon.getImage());
 		ventana.setResizable(false);
 		ventana.setLayout(new BorderLayout());
 		ventana.add(this, BorderLayout.CENTER);
