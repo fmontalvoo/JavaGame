@@ -10,7 +10,7 @@ import com.fmont.graficos.Sprite;
  */
 public abstract class Tile {
 
-	private Sprite sprite;
+	public Sprite sprite;
 
 //	Coleccion de tiles
 	public static final Tile ASFALTO = new TileAsfalto(Sprite.ASFALTO);

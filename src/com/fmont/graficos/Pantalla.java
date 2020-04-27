@@ -1,5 +1,7 @@
 package com.fmont.graficos;
 
+import com.fmont.mapa.cuadro.Tile;
+
 /**
  * Clase encargada de dibujar y mostrar los graficos.
  * 
@@ -37,7 +39,7 @@ public final class Pantalla {
 	 * @param dX
 	 * @param dY
 	 */
-	public void monstrar(final int dX, final int dY) {
+	public void mostrar(final int dX, final int dY) {
 		for (int y = 0; y < this.alto; y++) {
 			int posicionY = y + dY;
 			if (posicionY < 0 || posicionY >= this.alto)
@@ -48,6 +50,18 @@ public final class Pantalla {
 					continue;
 
 				pixels[posicionX + posicionY * this.ancho] = Sprite.ASFALTO.pixels[(x & 31) + (y & 31) * 32];
+			}
+		}
+	}
+
+	public void mostrar(final int dX, final int dY, Tile tile) {
+		for (int y = 0; y < tile.sprite.getTamanioLado(); y++) {
+			int posicionY = y + dY;
+			for (int x = 0; x < tile.sprite.getTamanioLado(); x++) {
+				int posicionX = x + dX;
+				if (posicionX < 0 || posicionX >= this.ancho || posicionY < 0 || posicionY >= this.alto)
+					break;
+				pixels[posicionX + posicionY * this.ancho] = tile.sprite.pixels[x + y * tile.sprite.getTamanioLado()];
 			}
 		}
 	}

@@ -11,7 +11,7 @@ public class TileAsfalto extends Tile {
 
 	@Override
 	public void mostrar(int x, int y, Pantalla pantalla) {
-
+		pantalla.mostrar(x, y, this);
 	}
 
 }

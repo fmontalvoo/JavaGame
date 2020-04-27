@@ -146,7 +146,7 @@ public class Juego extends Canvas implements Runnable {
 		}
 
 		pantalla.limpiar();
-		pantalla.monstrar(x, y);
+		pantalla.mostrar(x, y);
 
 //		Copia el array de pixeles de la clase Pantalla al array de pixeles de esta clase.
 		System.arraycopy(pantalla.pixels, 0, pixels, 0, pixels.length);

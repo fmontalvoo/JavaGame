@@ -39,4 +39,8 @@ public final class Sprite {
 		}
 	}
 
+	public int getTamanioLado() {
+		return tamanioLado;
+	}
+
 }
