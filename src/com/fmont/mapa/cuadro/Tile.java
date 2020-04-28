@@ -14,6 +14,8 @@ public abstract class Tile {
 
 	public Sprite sprite;
 
+	public static final int TAMANIO_LADO = 32;
+
 //	Coleccion de tiles
 	public static final Tile ASFALTO = new TileAsfalto(Sprite.ASFALTO);
 	public static final Tile VACIO = new TileVacio(Sprite.VACIO);

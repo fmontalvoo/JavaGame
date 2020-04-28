@@ -51,8 +51,15 @@ public final class Pantalla {
 			int posicionY = y + dY;
 			for (int x = 0; x < tile.sprite.getTamanioLado(); x++) {
 				int posicionX = x + dX;
-				if (posicionX < 0 || posicionX >= this.ancho || posicionY < 0 || posicionY >= this.alto)
+
+//				Condicion que evita dibujar cualquier objeto que se encuetre fuera de los limites de la pantalla del juego.
+				if (posicionX < -tile.sprite.getTamanioLado() || posicionX >= this.ancho || posicionY < 0
+						|| posicionY >= this.alto)
 					break;
+
+				if (posicionX < 0)
+					posicionX = 0;
+
 				pixels[posicionX + posicionY * this.ancho] = tile.sprite.pixels[x + y * tile.sprite.getTamanioLado()];
 			}
 		}

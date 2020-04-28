@@ -62,9 +62,9 @@ public abstract class Mapa {
 		pantalla.setDiferencia(dX, dY);
 
 		int x0 = dX >> 5;
-		int x1 = (dX + pantalla.getAncho()) >> 5;
+		int x1 = (dX + pantalla.getAncho() + Tile.TAMANIO_LADO) >> 5;
 		int y0 = dY >> 5;
-		int y1 = (dY + pantalla.getAlto()) >> 5;
+		int y1 = (dY + pantalla.getAlto() + Tile.TAMANIO_LADO) >> 5;
 
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
@@ -80,7 +80,7 @@ public abstract class Mapa {
 	 * @return
 	 */
 	public Tile getTile(final int x, final int y) {
-		switch (tiles[x + y * this.ancho]) {
+		switch (tiles[Math.abs(x) + Math.abs(y) * this.ancho]) {
 		case 0:
 			return Tile.ASFALTO;
 		default:
