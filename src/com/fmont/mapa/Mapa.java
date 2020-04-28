@@ -1,6 +1,7 @@
 package com.fmont.mapa;
 
 import com.fmont.graficos.Pantalla;
+import com.fmont.mapa.cuadro.Tile;
 
 /**
  * Clase abstracta encargada de la generacion y carga de los mapas para mostrar
@@ -56,11 +57,26 @@ public abstract class Mapa {
 	 * @param dY
 	 * @param pantalla
 	 */
-	public void mostrar(int dX, int dY, Pantalla pantalla) {
+	public void mostrar(final int dX, final int dY, final Pantalla pantalla) {
 		int x0 = dX >> 5;
 		int x1 = (dX + pantalla.getAncho()) >> 5;
 		int y0 = dY >> 5;
 		int y1 = (dY + pantalla.getAlto()) >> 5;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public Tile getTile(final int x, final int y) {
+		switch (tiles[x + y * this.ancho]) {
+		case 0:
+			return Tile.ASFALTO;
+		default:
+			return Tile.VACIO;
+		}
 	}
 
 }
