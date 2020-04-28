@@ -3,16 +3,18 @@ package com.fmont.mapa;
 import com.fmont.graficos.Pantalla;
 
 /**
+ * Clase abstracta encargada de la generacion y carga de los mapas para mostrar
+ * en el juego.
  * 
  * @author fmont
  *
  */
 public abstract class Mapa {
 
-	private int ancho;
-	private int alto;
+	protected int ancho;
+	protected int alto;
 
-	private int[] tiles;
+	protected int[] tiles;
 
 	public Mapa(int ancho, int alto) {
 		this.ancho = ancho;
@@ -29,7 +31,7 @@ public abstract class Mapa {
 	/**
 	 * 
 	 */
-	private void generarMapa() {
+	protected void generarMapa() {
 
 	}
 
