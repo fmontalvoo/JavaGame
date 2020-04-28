@@ -16,11 +16,14 @@ public final class Teclado implements KeyListener {
 //	Permite identificar cual tecla fue presionada.
 	private final boolean[] TECLAS = new boolean[NUMERO_TECLAS];
 
-//	Variables que corresponden a los movimientos que puede realizar el usuario.
+//	Variables que corresponden a las teclas con los movimientos que puede realizar el usuario.
 	public boolean arriba;
 	public boolean abajo;
 	public boolean derecha;
 	public boolean izquierda;
+
+//	Variable que corresponde a la tecla para cerrar el juego.
+	public boolean cerrar;
 
 	/**
 	 * Actualiza las variables correspondientes al movimiento.
@@ -30,6 +33,8 @@ public final class Teclado implements KeyListener {
 		abajo = TECLAS[KeyEvent.VK_S];
 		derecha = TECLAS[KeyEvent.VK_D];
 		izquierda = TECLAS[KeyEvent.VK_A];
+
+		cerrar = TECLAS[KeyEvent.VK_ESCAPE];
 	}
 
 	@Override

@@ -26,6 +26,7 @@ public abstract class Tile {
 	}
 
 	/**
+	 * Dibuja el tile en la pantalla de juego.
 	 * 
 	 * @param x
 	 * @param y
@@ -36,6 +37,7 @@ public abstract class Tile {
 	}
 
 	/**
+	 * Determina si el tile se puede atravesar o no por el jugador.
 	 * 
 	 * @return
 	 */

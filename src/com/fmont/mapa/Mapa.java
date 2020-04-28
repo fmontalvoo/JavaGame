@@ -30,7 +30,7 @@ public abstract class Mapa {
 	}
 
 	/**
-	 * 
+	 * Genera el mapa de forma aleatoria.
 	 */
 	protected void generarMapa() {
 
@@ -52,6 +52,7 @@ public abstract class Mapa {
 	}
 
 	/**
+	 * Dibuja el mapa en la pantalla del juego.
 	 * 
 	 * @param dX
 	 * @param dY
@@ -74,6 +75,7 @@ public abstract class Mapa {
 	}
 
 	/**
+	 * Retorna un tipo de tile segun la coordenada que le corresponda.
 	 * 
 	 * @param x
 	 * @param y

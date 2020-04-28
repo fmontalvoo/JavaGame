@@ -2,6 +2,7 @@ package com.fmont.juego;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -31,8 +32,12 @@ public class Juego extends Canvas implements Runnable {
 	private static final int ANCHO = 800;
 	private static final int ALTO = 600;
 
+//	Variables que corresponden a los ejes de la pantalla.
 	private static int x = 0;
 	private static int y = 0;
+
+	private static String LBL_APS = "";
+	private static String LBL_FPS = "";
 
 //	Actualizaciones por segundo.
 	private static int aps = 0;
@@ -85,6 +90,8 @@ public class Juego extends Canvas implements Runnable {
 
 		ventana = new JFrame(TITULO);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		Elimina los bordes de la ventana.
+//		ventana.setUndecorated(true);
 		ventana.setIconImage(icon.getImage());
 		ventana.setResizable(false);
 		ventana.setLayout(new BorderLayout());
@@ -137,6 +144,9 @@ public class Juego extends Canvas implements Runnable {
 			x--;
 		}
 
+		if (teclado.cerrar)
+			System.exit(0);
+
 		aps++;
 	}
 
@@ -161,7 +171,13 @@ public class Juego extends Canvas implements Runnable {
 
 		Graphics graphics = estrategia.getDrawGraphics();
 
+		graphics.setColor(Color.WHITE);
+
 		graphics.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+
+		graphics.drawString(LBL_APS, 1, 10);
+		graphics.drawString(LBL_FPS, 1, 25);
+
 //		Elimina el objeto 'graphics' de la memoria.
 		graphics.dispose();
 
@@ -207,7 +223,8 @@ public class Juego extends Canvas implements Runnable {
 
 //			Condicion para verificar si ha transcurrido un segundo entre la referencia de tiempo y el momento actual.
 			if ((System.nanoTime() - referenciaTiempo) > NS_POR_SEGUNDO) {
-				ventana.setTitle(TITULO + " || APS: " + aps + " || FPS: " + fps);
+				LBL_APS = "APS: ".concat(String.valueOf(aps));
+				LBL_FPS = "FPS: ".concat(String.valueOf(fps));
 				aps = 0;
 				fps = 0;
 				referenciaTiempo = System.nanoTime();
