@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 
 import com.fmont.control.Teclado;
 import com.fmont.graficos.Pantalla;
+import com.fmont.mapa.GenerarMapa;
+import com.fmont.mapa.Mapa;
 
 /**
  * Clase que sirve como punto de ejecucion del juego.
@@ -57,6 +59,9 @@ public class Juego extends Canvas implements Runnable {
 //	Objeto encargado de dibujar objetos en la ventana del juego.
 	private static Pantalla pantalla;
 
+//	Objeto encargado de generar/cargar el mapa y mostrarlo en la pantalla.
+	private static Mapa mapa;
+
 //	Crea una imagen vacia.
 	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
 
@@ -71,6 +76,9 @@ public class Juego extends Canvas implements Runnable {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 
 		pantalla = new Pantalla(ANCHO, ALTO);
+
+//		Recibe como parametros el numero de tiles a mostrar en la pantalla.
+		mapa = new GenerarMapa(128, 128);
 
 		teclado = new Teclado();
 		addKeyListener(teclado);
@@ -117,16 +125,16 @@ public class Juego extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-			y++;
-		}
-		if (teclado.abajo) {
 			y--;
 		}
+		if (teclado.abajo) {
+			y++;
+		}
 		if (teclado.derecha) {
-			x--;
+			x++;
 		}
 		if (teclado.izquierda) {
-			x++;
+			x--;
 		}
 
 		aps++;
@@ -146,8 +154,7 @@ public class Juego extends Canvas implements Runnable {
 		}
 
 		pantalla.limpiar();
-		pantalla.mostrar(x, y);
-//		pantalla.mostrar(x, y, Tile.ASFALTO);
+		mapa.mostrar(x, y, pantalla);
 
 //		Copia el array de pixeles de la clase Pantalla al array de pixeles de esta clase.
 		System.arraycopy(pantalla.pixels, 0, pixels, 0, pixels.length);

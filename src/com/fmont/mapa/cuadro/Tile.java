@@ -30,6 +30,7 @@ public abstract class Tile {
 	 * @param pantalla
 	 */
 	public void mostrar(int x, int y, Pantalla pantalla) {
+		pantalla.mostrar(x << 5, y << 5, this);
 	}
 
 	/**

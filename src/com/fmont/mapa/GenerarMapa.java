@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class GenerarMapa extends Mapa {
 
-	private static Random aleatorio = new Random();
+	private static final Random aleatorio = new Random();
 
 	public GenerarMapa(int ancho, int alto) {
 		super(ancho, alto);

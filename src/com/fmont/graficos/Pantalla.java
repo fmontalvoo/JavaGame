@@ -13,6 +13,9 @@ public final class Pantalla {
 	private final int ancho;
 	private final int alto;
 
+	private int diferenciaX;
+	private int diferenciaY;
+
 	public final int[] pixels;
 
 	public Pantalla(final int ancho, final int alto) {
@@ -38,23 +41,12 @@ public final class Pantalla {
 	 * 
 	 * @param dX
 	 * @param dY
+	 * @param tile
 	 */
-	public void mostrar(final int dX, final int dY) {
-		for (int y = 0; y < this.alto; y++) {
-			int posicionY = y + dY;
-			if (posicionY < 0 || posicionY >= this.alto)
-				continue;
-			for (int x = 0; x < this.ancho; x++) {
-				int posicionX = x + dX;
-				if (posicionX < 0 || posicionX >= this.ancho)
-					continue;
 
-				pixels[posicionX + posicionY * this.ancho] = Sprite.ASFALTO.pixels[(x & 31) + (y & 31) * 32];
-			}
-		}
-	}
-
-	public void mostrar(final int dX, final int dY, Tile tile) {
+	public void mostrar(int dX, int dY, Tile tile) {
+		dX -= diferenciaX;
+		dY -= diferenciaY;
 		for (int y = 0; y < tile.sprite.getTamanioLado(); y++) {
 			int posicionY = y + dY;
 			for (int x = 0; x < tile.sprite.getTamanioLado(); x++) {
@@ -64,6 +56,11 @@ public final class Pantalla {
 				pixels[posicionX + posicionY * this.ancho] = tile.sprite.pixels[x + y * tile.sprite.getTamanioLado()];
 			}
 		}
+	}
+
+	public void setDiferencia(final int diferenciaX, final int diferenciaY) {
+		this.diferenciaX = diferenciaX;
+		this.diferenciaY = diferenciaY;
 	}
 
 	public int getAncho() {

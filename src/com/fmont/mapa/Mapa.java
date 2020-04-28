@@ -58,10 +58,19 @@ public abstract class Mapa {
 	 * @param pantalla
 	 */
 	public void mostrar(final int dX, final int dY, final Pantalla pantalla) {
+
+		pantalla.setDiferencia(dX, dY);
+
 		int x0 = dX >> 5;
 		int x1 = (dX + pantalla.getAncho()) >> 5;
 		int y0 = dY >> 5;
 		int y1 = (dY + pantalla.getAlto()) >> 5;
+
+		for (int y = y0; y < y1; y++) {
+			for (int x = x0; x < x1; x++) {
+				getTile(x, y).mostrar(x, y, pantalla);
+			}
+		}
 	}
 
 	/**
