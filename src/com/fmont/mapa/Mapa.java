@@ -57,6 +57,10 @@ public abstract class Mapa {
 	 * @param pantalla
 	 */
 	public void mostrar(int dX, int dY, Pantalla pantalla) {
+		int x0 = dX >> 5;
+		int x1 = (dX + pantalla.getAncho()) >> 5;
+		int y0 = dY >> 5;
+		int y1 = (dY + pantalla.getAlto()) >> 5;
 	}
 
 }
