@@ -82,9 +82,32 @@ public abstract class Mapa {
 	 * @return
 	 */
 	public Tile getTile(final int x, final int y) {
-		switch (tiles[Math.abs(x) + Math.abs(y) * this.ancho]) {
+		if (x < 0 || y < 0)
+			return Tile.VACIO;
+
+		switch (tiles[x + y * this.ancho]) {
 		case 0:
 			return Tile.ASFALTO;
+		case 1:
+			return Tile.ARENA;
+		case 2:
+			return Tile.LINEA_ASFALTO;
+		case 3:
+			return Tile.CACTUS;
+		case 4:
+			return Tile.BORDE_ASFALTO;
+		case 5:
+			return Tile.ESQUINA_ASFALTO;
+		case 6:
+			return Tile.PIEDRA;
+		case 7:
+			return Tile.OXIDO;
+		case 8:
+			return Tile.BORDE_PUERTA;
+		case 9:
+			return Tile.ESQUINA_PUERTA;
+		case 10:
+			return Tile.ARCO_PUERTA;
 		default:
 			return Tile.VACIO;
 		}

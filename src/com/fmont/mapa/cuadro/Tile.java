@@ -10,15 +10,25 @@ import com.fmont.graficos.Sprite;
  * @author fmont
  *
  */
-public abstract class Tile {
+public class Tile {
 
 	public Sprite sprite;
 
 	public static final int TAMANIO_LADO = 32;
 
 //	Coleccion de tiles
-	public static final Tile ASFALTO = new TileAsfalto(Sprite.ASFALTO);
-	public static final Tile VACIO = new TileVacio(Sprite.VACIO);
+	public static final Tile VACIO = new Tile(Sprite.VACIO);
+	public static final Tile ASFALTO = new Tile(Sprite.ASFALTO);
+	public static final Tile ARENA = new Tile(Sprite.ARENA);
+	public static final Tile LINEA_ASFALTO = new Tile(Sprite.LINEA_ASFALTO);
+	public static final Tile CACTUS = new Tile(Sprite.CACTUS);
+	public static final Tile BORDE_ASFALTO = new Tile(Sprite.BORDE_ASFALTO);
+	public static final Tile ESQUINA_ASFALTO = new Tile(Sprite.ESQUINA_ASFALTO);
+	public static final Tile PIEDRA = new Tile(Sprite.PIEDRA);
+	public static final Tile OXIDO = new Tile(Sprite.OXIDO);
+	public static final Tile BORDE_PUERTA = new Tile(Sprite.BORDE_PUERTA);
+	public static final Tile ESQUINA_PUERTA = new Tile(Sprite.ESQUINA_PUERTA);
+	public static final Tile ARCO_PUERTA = new Tile(Sprite.ARCO_PUERTA);
 //	Fin coleccion
 
 	public Tile(Sprite sprite) {

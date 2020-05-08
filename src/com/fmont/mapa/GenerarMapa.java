@@ -20,7 +20,7 @@ public class GenerarMapa extends Mapa {
 	protected void generarMapa() {
 		for (int y = 0; y < this.alto; y++) {
 			for (int x = 0; x < this.ancho; x++) {
-				this.tiles[x + y * this.ancho] = aleatorio.nextInt(3);
+				this.tiles[x + y * this.ancho] = aleatorio.nextInt(11);
 			}
 		}
 	}

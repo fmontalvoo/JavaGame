@@ -18,8 +18,18 @@ public final class Sprite {
 	public int[] pixels;
 
 //	Coleccion de sprites
-	public static final Sprite ASFALTO = new Sprite(32, 0, 0, HojaSprites.desierto);
 	public static final Sprite VACIO = new Sprite(32, 0);
+	public static final Sprite ASFALTO = new Sprite(32, 0, 0, HojaSprites.desierto);
+	public static final Sprite ARENA = new Sprite(32, 0, 1, HojaSprites.desierto);
+	public static final Sprite LINEA_ASFALTO = new Sprite(32, 0, 2, HojaSprites.desierto);
+	public static final Sprite CACTUS = new Sprite(32, 0, 3, HojaSprites.desierto);
+	public static final Sprite BORDE_ASFALTO = new Sprite(32, 0, 4, HojaSprites.desierto);
+	public static final Sprite ESQUINA_ASFALTO = new Sprite(32, 0, 5, HojaSprites.desierto);
+	public static final Sprite PIEDRA = new Sprite(32, 0, 6, HojaSprites.desierto);
+	public static final Sprite OXIDO = new Sprite(32, 0, 7, HojaSprites.desierto);
+	public static final Sprite BORDE_PUERTA = new Sprite(32, 0, 8, HojaSprites.desierto);
+	public static final Sprite ESQUINA_PUERTA = new Sprite(32, 0, 9, HojaSprites.desierto);
+	public static final Sprite ARCO_PUERTA = new Sprite(32, 1, 0, HojaSprites.desierto);
 //	Fin coleccion
 
 	public Sprite(final int tamanioLado, final int fila, final int columna, final HojaSprites hojaSprites) {
@@ -28,8 +38,8 @@ public final class Sprite {
 
 		pixels = new int[this.tamanioLado * this.tamanioLado];
 
-		this.x = fila * this.tamanioLado;
-		this.y = columna * this.tamanioLado;
+		this.x = columna * this.tamanioLado;
+		this.y = fila * this.tamanioLado;
 
 		for (int y = 0; y < this.tamanioLado; y++) {
 			for (int x = 0; x < this.tamanioLado; x++) {
