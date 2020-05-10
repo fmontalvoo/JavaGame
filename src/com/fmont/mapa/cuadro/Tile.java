@@ -43,6 +43,7 @@ public class Tile {
 	 * @param pantalla
 	 */
 	public void mostrar(int x, int y, Pantalla pantalla) {
+//		System.out.println(x + " , " + y + " | " + (x << 5) + ", " + (y << 5));
 		pantalla.mostrar(x << 5, y << 5, this);
 	}
 

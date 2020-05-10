@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 import com.fmont.control.Teclado;
 import com.fmont.graficos.Pantalla;
-import com.fmont.mapa.GenerarMapa;
+import com.fmont.mapa.CargarMapa;
 import com.fmont.mapa.Mapa;
 
 /**
@@ -83,7 +83,10 @@ public class Juego extends Canvas implements Runnable {
 		pantalla = new Pantalla(ANCHO, ALTO);
 
 //		Recibe como parametros el numero de tiles a mostrar en la pantalla.
-		mapa = new GenerarMapa(128, 128);
+//		mapa = new GenerarMapa(128, 128);
+
+//		Recibe como parametro la ruta del archivo con las instrucciones para generar el mapa.
+		mapa = new CargarMapa("/mapas/mapa_desierto.png");
 
 		teclado = new Teclado();
 		addKeyListener(teclado);

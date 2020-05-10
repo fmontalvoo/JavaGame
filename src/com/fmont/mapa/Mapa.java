@@ -16,6 +16,7 @@ public abstract class Mapa {
 	protected int alto;
 
 	protected int[] tiles;
+	protected Tile[] cuadros;
 
 	public Mapa(int ancho, int alto) {
 		this.ancho = ancho;
@@ -27,20 +28,24 @@ public abstract class Mapa {
 
 	public Mapa(String url) {
 		this.cargarMapa(url);
+		this.generarMapa();
 	}
 
 	/**
-	 * Genera el mapa de forma aleatoria.
+	 * Genera el mapa al asignar cada tile de forma individual al array de tiles
+	 * para luego mostrarlo en la pantalla.
 	 */
 	protected void generarMapa() {
 
 	}
 
 	/**
+	 * Carga un archivo en el cual se encuentran las disposisiones de los tiles para
+	 * crear el mapa.
 	 * 
 	 * @param url
 	 */
-	private void cargarMapa(String url) {
+	protected void cargarMapa(String url) {
 
 	}
 
@@ -59,7 +64,7 @@ public abstract class Mapa {
 	 * @param pantalla
 	 */
 	public void mostrar(final int dX, final int dY, final Pantalla pantalla) {
-
+//		System.out.println(dX + ", " + dY + " | " + (dX >> 5) + ", " + (dY >> 5));
 		pantalla.setDiferencia(dX, dY);
 
 		int x0 = dX >> 5;
@@ -67,9 +72,15 @@ public abstract class Mapa {
 		int y0 = dY >> 5;
 		int y1 = (dY + pantalla.getAlto() + Tile.TAMANIO_LADO) >> 5;
 
+//		System.out.println(x1 + " | " + y1);
+
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
-				getTile(x, y).mostrar(x, y, pantalla);
+//				getTile(x, y).mostrar(x, y, pantalla);
+				if (x < 0 || y < 0 || x >= this.ancho || y >= this.alto)
+					Tile.VACIO.mostrar(x, y, pantalla);
+				else
+					this.cuadros[x + y * this.ancho].mostrar(x, y, pantalla);
 			}
 		}
 	}
@@ -82,7 +93,7 @@ public abstract class Mapa {
 	 * @return
 	 */
 	public Tile getTile(final int x, final int y) {
-		if (x < 0 || y < 0)
+		if (x < 0 || y < 0 || x >= this.ancho || y >= this.alto)
 			return Tile.VACIO;
 
 		switch (tiles[x + y * this.ancho]) {
