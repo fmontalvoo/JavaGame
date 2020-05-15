@@ -47,14 +47,35 @@ public class CargarMapa extends Mapa {
 			case 0xffa8a8a8:
 				this.cuadros[i] = Tile.LINEA_ASFALTO;
 				continue;
+			case 0xffa8b7a8:
+				this.cuadros[i] = Tile.LINEA_ASFALTO_R90;
+				continue;
 			case 0xff84b750:
 				this.cuadros[i] = Tile.CACTUS;
 				continue;
 			case 0xff696969:
 				this.cuadros[i] = Tile.BORDE_ASFALTO;
 				continue;
+			case 0xff696901:
+				this.cuadros[i] = Tile.BORDE_ASFALTO_X;
+				continue;
+			case 0xff696269:
+				this.cuadros[i] = Tile.BORDE_ASFALTO_R90I;
+				continue;
+			case 0xff636969:
+				this.cuadros[i] = Tile.BORDE_ASFALTO_R90D;
+				continue;
 			case 0xffcdcdcd:
 				this.cuadros[i] = Tile.ESQUINA_ASFALTO;
+				continue;
+			case 0xffcdcd1d:
+				this.cuadros[i] = Tile.ESQUINA_ASFALTO_X;
+				continue;
+			case 0xffcdc2cd:
+				this.cuadros[i] = Tile.ESQUINA_ASFALTO_XY;
+				continue;
+			case 0xffc3cdcd:
+				this.cuadros[i] = Tile.ESQUINA_ASFALTO_Y;
 				continue;
 			case 0xff9e9e9e:
 				this.cuadros[i] = Tile.PIEDRA;
@@ -65,8 +86,14 @@ public class CargarMapa extends Mapa {
 			case 0xffb56641:
 				this.cuadros[i] = Tile.BORDE_PUERTA;
 				continue;
+			case 0xffa66957:
+				this.cuadros[i] = Tile.BORDE_PUERTA_X;
+				continue;
 			case 0xff8c3824:
 				this.cuadros[i] = Tile.ESQUINA_PUERTA;
+				continue;
+			case 0xffdb7c40:
+				this.cuadros[i] = Tile.ESQUINA_PUERTA_X;
 				continue;
 			case 0xff672d27:
 				this.cuadros[i] = Tile.ARCO_PUERTA;
